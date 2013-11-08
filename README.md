@@ -9,8 +9,8 @@ Install with [npm](http://npmjs.org/):
     npm install time-calc
 ```
 ## API 
-- `default units`  
-Y,M,D,h,m,s,ms
+`unit keys`  
+Y, M, D, h, m, s, ms
 
 ### - calculate time-unit
 ```js
