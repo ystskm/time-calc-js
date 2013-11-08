@@ -1,46 +1,74 @@
-# micro-pipe
+# time-calc
 
-Support for making functions pipeline. Only 549 byte raw file.
-You can use this both node and browsers.
+Support for calculating time-unit like twitter
+You can use this _both node and browsers_.
 
 ## Install
-
 Install with [npm](http://npmjs.org/):
+```sh
+    npm install time-calc
+```
+## API 
+- `default units`  
+Y,M,D,h,m,s,ms
 
-    npm install micro-pipe
-    
-## API - Set functions by args
-
-    var micropipe = require('micro-pipe');
-    micropipe(function(next){ console('a'), next()}
-              ,function(next){ console('b'), next()}
-              ,function(){ console('c')}); // => 'a', 'b', 'c'
-
-### - return value to next
-
-    var micropipe = require('micro-pipe');
-    micropipe(function(next){ console('a'), next('b')}
-              ,function(v, next){ console(v == 'b'), next('c')}
-              ,function(v){ console(v == 'c')}); // => 'a', true, true
-
-### - set functions by array
-
-    var micropipe = require('micro-pipe');
-    var fns = [];
-    fns.push(function(next){ console('a'), next()});
-    fns.push(function(next){ console('b'), next()});
-    fns.push(function(){ console('c')})
-    micropipe(fns); // => 'a', 'b', 'c'
-
-### also use on browser
+### - calculate time-unit
+```js
+    var watcher = require('time-calc')();
+    setTimeout(function(){
+      console.log(watcher()); // => '30ms'
+    }, 30);
+    setTimeout(function(){
+      console.log(watcher()); // => '1s'
+    }, 1200);
+    setTimeout(function(){
+      console.log(watcher()); // => '1m'
+    }, 61000);
+```
+### - limit target unit
+```js
+    var watcher = require('time-calc')();
+    setTimeout(function({enable:{s:false}}){
+      console.log(watcher()); // => '1100ms'
+    }, 1100);
+    setTimeout(function(){
+      console.log(watcher({enable:{m:false}})); // => '60s'
+    }, 61000);
+```
+### - change display
+```js
+    var watcher = timecalc({display:{s:'秒', m: '分'}});
+    setTimeout(function(){
+      console.log(watcher()); // => '1秒'
+    }, 1000);
+    setTimeout(function(){
+      console.log(watcher()); // => '1分'
+    }, 60000);
+```
+### - set start position
+```js
+    var watcher = require('time-calc')({basepoint: Date.now() + 5000});
+    setTimeout(function(){
+      console.log(watcher()); // => '1s'
+    }, 6200);
+```
+### - _watcher_ can accept all same options as _time-calc_
+```js
+    var watcher = require('time-calc')(), base = Date.now() + 5000;
+    setTimeout(function(){
+      console.log(watcher({basepoint: base})); // => '1s'
+    }, 6200);
+```
+## also use on browser
 
 ```html
-<script type="text/javascript" src="micro-pipe.js"></script>
+<script type="text/javascript" src="time-calc.js"></script>
 <script type="text/javascript">
 
-    micropipe(function(next){ console('x'), next()}
-              ,function(next){ console('y'), next()}
-              ,function(){ console('z')}); // => 'x', 'y', 'z'
+	var watcher = calctime();
+    setTimeout(function(){
+      console.log(watcher()); // => '1m'
+    }, 61000);
 
 </script>
 ```

@@ -1,0 +1,22 @@
+{
+  "name": "time-calc",
+  "version": "0.5.0",
+  "author": {
+    "name": "Yoshitaka Sakamoto",
+    "url": "http://github.com/ystskm",
+    "email": "sakamoto@liberty-technology.biz"
+  },
+  "contributors": [],
+  "dependencies": {},
+  "description": "Calculating time unit.",
+  "devDependencies": {},
+  "keywords": ["util","time","diff","calc"],
+  "main": "time-calc.js",
+  "repository": {
+    "url": "http://github.com/ystskm/node-localelist",
+    "type": "git"
+  },
+  "scripts": {
+    "test": "node test/_runner.js"
+  }
+}
