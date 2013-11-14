@@ -10,6 +10,7 @@
   "dependencies": {},
   "description": "Calculating time unit.",
   "devDependencies": {
+    "nodeunit": "*",
     "nodeunit-ci": "*"
   },
   "keywords": ["util","time","diff","calc"],
