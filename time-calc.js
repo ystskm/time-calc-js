@@ -7,11 +7,22 @@ function timecalc(opts) {
     enable: {},
     display: {}
   }, b = null;
+  watcher.basepoint = function(v) {
+    return v ? (b = v): b;
+  };
+  watcher.enable = function() {
+    return U.enable;
+  };
+  watcher.display = function() {
+    return U.display;
+  };
+  watcher.diff = function() {
+    return Date.now() - b.getTime();
+  };
   return mergeOpts(opts, true), watcher;
   function watcher(opts) {
     mergeOpts(opts);
-    var bv = b.getTime(), cv = Date.now(), i = keys.length;
-    var diff = cv - bv, lastd = null;
+    var i = keys.length, diff = watcher.diff(), lastd = null;
     if(diff < 0) // TODO accept
       throw new Error('Time is never return.');
     while(i-- > 0) {
