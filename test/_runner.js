@@ -1,3 +1,3 @@
 /***/
 require('nodeunit-ci').run(['basic', 'basepoint', 'enable', 'display'],
-  __dirname, 15000);
+  __dirname, 30000);
