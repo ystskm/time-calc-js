@@ -1,5 +1,7 @@
 # time-calc
-
+  
+[![Build status](https://travis-ci.org/ystskm/time-calc-js.png)](https://travis-ci.org/ystskm/time-calc-js)  
+  
 Support for calculating time-unit like twitter
 You can use this _both node and browsers_.
 
