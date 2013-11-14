@@ -9,7 +9,9 @@
   "contributors": [],
   "dependencies": {},
   "description": "Calculating time unit.",
-  "devDependencies": {},
+  "devDependencies": {
+    "nodeunit-ci": "*"
+  },
   "keywords": ["util","time","diff","calc"],
   "main": "time-calc.js",
   "repository": {
