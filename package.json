@@ -1,6 +1,6 @@
 {
   "name": "time-calc",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": {
     "name": "Yoshitaka Sakamoto",
     "url": "http://github.com/ystskm",
@@ -13,7 +13,7 @@
   "keywords": ["util","time","diff","calc"],
   "main": "time-calc.js",
   "repository": {
-    "url": "http://github.com/ystskm/node-localelist",
+    "url": "http://github.com/ystskm/time-calc-js",
     "type": "git"
   },
   "scripts": {
