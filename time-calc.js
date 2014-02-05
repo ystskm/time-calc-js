@@ -32,7 +32,12 @@ function timecalc(opts) {
       U.enable[key] !== false && (lastd = createDisp(key)), diff = test;
     }
     function createDisp(key) {
-      return diff + (U.display[key] || key);
+      var repl = String(U.display[key] || key);
+      if(repl.indexOf('%d') >= 0)
+        return repl.replace(/[^\\]%d/g, diff);
+      if(repl.indexOf('%D') == 0)
+        return repl;
+      return diff + repl;
     }
   }
   function mergeOpts(opts, set_base) {
