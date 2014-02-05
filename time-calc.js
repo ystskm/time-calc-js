@@ -26,7 +26,7 @@ function timecalc(opts) {
     if(diff < 0) // TODO accept
       throw new Error('Time is never return.');
     while(i-- > 0) {
-      var test = parseInt(diff / 1000), key = keys[i];
+      var test = parseInt(diff / maxv[i]), key = keys[i];
       if(test == 0 || i === 0)
         return U.enable[key] === false ? lastd: createDisp(key);
       U.enable[key] !== false && (lastd = createDisp(key)), diff = test;
