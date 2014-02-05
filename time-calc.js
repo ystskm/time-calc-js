@@ -36,7 +36,7 @@ function timecalc(opts) {
       if(repl.indexOf('%d') >= 0)
         return repl.replace(/[^\\]%d/g, diff);
       if(repl.indexOf('%D') == 0)
-        return repl;
+        return repl.substr(2);
       return diff + repl;
     }
   }
