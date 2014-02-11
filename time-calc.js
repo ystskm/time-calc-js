@@ -1,8 +1,8 @@
 /***/
-(function() {
+(function(hasWin, hasMod) {
 
-  typeof module != 'undefined' && (module.exports = timecalc);
-  this.timecalc = timecalc;
+  hasWin && (window.timecalc = timecalc)
+  hasMod && module.exports && (module.exports = timecalc);
 
   function timecalc(opts) {
 
@@ -62,4 +62,4 @@
 
   }
 
-}).call(typeof window == 'undefined' ? this: window);
+})(typeof window == 'undefined', typeof module == 'undefined');
