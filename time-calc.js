@@ -62,4 +62,4 @@
 
   }
 
-})(typeof window == 'undefined', typeof module == 'undefined');
+})(typeof window != 'undefined', typeof module != 'undefined');
