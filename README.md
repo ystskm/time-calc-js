@@ -67,7 +67,7 @@ Y, M, D, h, m, s, ms
 <script type="text/javascript" src="time-calc.js"></script>
 <script type="text/javascript">
 
-	var watcher = calctime();
+	var watcher = timecalc();
     setTimeout(function(){
       console.log(watcher()); // => '1m'
     }, 61000);
