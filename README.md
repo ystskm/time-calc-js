@@ -47,6 +47,22 @@ Y, M, D, h, m, s, ms
       console.log(watcher()); // => '1分'
     }, 60000);
 ```
+### - change viewer 
+`default`
+```js
+    function defaultDisp(diff, repl) {
+      if(repl.indexOf('%d') >= 0)
+        return repl.replace(/[^\\]%d/g, split3(diff));
+      if(repl.indexOf('%D') == 0)
+        return repl.substr(2);
+      return split3(diff) + repl;
+    }
+```
+```js
+    var watcher = require('time-calc');
+    watcher.viewer(function(diff, repl){ return diff });
+    console.log(typeof watcher()); // => 'number'
+```
 ### - set start position
 ```js
     var watcher = require('time-calc')({basepoint: Date.now() + 5000});

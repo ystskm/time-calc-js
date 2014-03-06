@@ -1,3 +1,3 @@
 /***/
-require('nodeunit-ci').run(['basic', 'basepoint', 'enable', 'display'],
-  __dirname, 30000);
+require('nodeunit-ci').run(
+  ['basic', 'basepoint', 'enable', 'display', 'viewer'], __dirname, 30000);

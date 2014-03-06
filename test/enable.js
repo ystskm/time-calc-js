@@ -7,7 +7,7 @@ module.exports = nodeunit.testCase({
     var watcher = timecalc(opts);
     setTimeout(function() {
       var r = watcher();
-      t.equal(r.replace(/\d/g, ''), 'ms', r), t.done();
+      t.equal(r.replace(/\d/g, ''), ',ms', r), t.done();
     }, 1530);
   },
   'ondisplay': function(t) {
@@ -15,7 +15,7 @@ module.exports = nodeunit.testCase({
     var watcher = timecalc();
     setTimeout(function() {
       var r = watcher(opts);
-      t.equal(r.replace(/\d/g, ''), 'ms', r), t.done();
+      t.equal(r.replace(/\d/g, ''), ',ms', r), t.done();
     }, 1530);
   }
 });

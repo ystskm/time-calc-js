@@ -10,7 +10,8 @@
     var maxv = [null, 12, 30, 24, 60, 60, 1000];
     var U = {
       enable: {},
-      display: {}
+      display: {},
+      viewer: defaultDisp
     }, b = null;
 
     watcher.basepoint = function(v) {
@@ -21,6 +22,9 @@
     };
     watcher.display = function() {
       return U.display;
+    };
+    watcher.viewer = function(fn) {
+      return fn && (U.viewer = fn), U.viewer;
     };
     watcher.diff = function() {
       return Date.now() - b.getTime();
@@ -40,12 +44,7 @@
         U.enable[key] !== false && (lastd = createDisp(key)), diff = test;
       }
       function createDisp(key) {
-        var repl = String(U.display[key] || key);
-        if(repl.indexOf('%d') >= 0)
-          return repl.replace(/[^\\]%d/g, diff);
-        if(repl.indexOf('%D') == 0)
-          return repl.substr(2);
-        return diff + repl;
+        return U.viewer(diff, String(U.display[key] || key));
       }
     }
 
@@ -58,6 +57,40 @@
       });
       var nb = new Date(opts.basepoint == null ? Date.now(): opts.basepoint);
       (set_base || opts.basepoint) && (b = nb);
+    }
+
+    function defaultDisp(diff, repl) {
+      if(repl.indexOf('%d') >= 0)
+        return repl.replace(/[^\\]%d/g, split3(diff));
+      if(repl.indexOf('%D') == 0)
+        return repl.substr(2);
+      return split3(diff) + repl;
+    }
+
+    function split3(v) {
+
+      var mark = ',', minus = v < 0;
+      v = String(minus ? v * -1: v);
+
+      var decimal = null;
+      if(v.indexOf('.') != -1)
+        decimal = v.substr(v.indexOf('.')), v = v.replace(decimal, '');
+
+      var s = '';
+      for( var i = v.length - 1; i >= 0; i--) {
+        if(s.length != 0 && (v.length - 1 - i) % 3 == 0)
+          s = mark + s;
+        s = v[i] + s;
+      }
+
+      if(minus)
+        s = '-' + s;
+
+      if(decimal)
+        s += decimal;
+
+      return s;
+
     }
 
   }
