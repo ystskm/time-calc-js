@@ -61,7 +61,7 @@
 
     function defaultDisp(diff, repl) {
       if(repl.indexOf('%d') >= 0)
-        return repl.replace(/[^\\]%d/g, split3(diff));
+        return repl.replace(/(^|[^\\])%d/g, split3(diff));
       if(repl.indexOf('%D') == 0)
         return repl.substr(2);
       return split3(diff) + repl;
