@@ -1,0 +1,23 @@
+{
+  "name": "time-calc",
+  "version": "0.7.2",
+  "authors": [
+    "ystskm <brilliantpenguin@gmail.com>"
+  ],
+  "main": "time-calc.js",
+  "keywords": [
+    "util",
+    "time",
+    "diff",
+    "calc"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ystskm/time-calc-js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
