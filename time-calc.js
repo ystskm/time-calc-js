@@ -1,9 +1,23 @@
 /***/
-(function(hasWin, hasMod) {
+(function(has_win, has_mdl) {
+  var global;
+  try {
 
-  hasWin && (window.timecalc = timecalc)
-  hasMod && module.exports && (module.exports = timecalc);
+    if(has_win) {
+      // browser, emulated window
+      global = window;
+    } else {
+      // raw Node.js, web-worker
+      global = typeof self == 'undefined' ? this: self;
+    }
 
+    // exports
+    global.timecalc = timecalc;
+    !has_mdl || (module.exports = timecalc);
+
+  } catch(e) {
+    console.error('[timecalc] Install failed for some reason: ', e);
+  }
   function timecalc(opts) {
 
     var keys = ['Y', 'M', 'D', 'h', 'm', 's', 'ms'];
@@ -77,7 +91,7 @@
         decimal = v.substr(v.indexOf('.')), v = v.replace(decimal, '');
 
       var s = '';
-      for( var i = v.length - 1; i >= 0; i--) {
+      for(var i = v.length - 1; i >= 0; i--) {
         if(s.length != 0 && (v.length - 1 - i) % 3 == 0)
           s = mark + s;
         s = v[i] + s;
@@ -95,4 +109,4 @@
 
   }
 
-})(typeof window != 'undefined', typeof module != 'undefined');
+}).call(this, typeof window != 'undefined', typeof module != 'undefined');
