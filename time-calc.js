@@ -63,11 +63,12 @@
     }
 
     function mergeOpts(opts, set_base) {
-      opts = opts instanceof Object ? opts: {};
+      opts = opts || {};
       ['enable', 'display'].forEach(function(k) {
-        !opts[k] && (opts[k] = {});
-        for( var i in opts[k])
+        opts[k] || (opts[k] = {});
+        for( var i in opts[k]) {
           U[k][i] = opts[k][i];
+        }
       });
       var nb = new Date(opts.basepoint == null ? Date.now(): opts.basepoint);
       (set_base || opts.basepoint) && (b = nb);
