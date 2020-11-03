@@ -1,7 +1,7 @@
-var nodeunit = require('nodeunit');
+var ci = require('foonyah-ci');
 var timecalc = require('../time-calc');
 
-module.exports = nodeunit.testCase({
+module.exports = ci.testCase({
   'oncreate': function(t) {
     var opts = {basepoint: Date.now() + 1000};
     var watcher = timecalc(opts);
@@ -18,4 +18,4 @@ module.exports = nodeunit.testCase({
       t.equal(r.replace(/\d/g, ''), 'ms', r), t.done();
     }, 1530);
   }
-});
+}, 'basepoint');
