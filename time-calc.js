@@ -14,6 +14,9 @@
 
     // exports
     g.timecalc = timecalc;
+    // synquery module compatible
+    !g.AppSpace || g.AppSpace.define('timecalc', timecalc);
+    // node.js, requre.js
     !has_mdl || (module.exports = timecalc);
 
   } catch(e) {
