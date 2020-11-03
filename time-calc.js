@@ -57,20 +57,22 @@
 
     function watcher(opts) {
       mergeOpts(opts);
-      var i = keys.length, diff = watcher.diff(), lastd = null;
+      var i = keys.length, diff = watcher.diff(), diff_int = parseInt(diff), lastd = NULL;
       if(diff < 0) { // TODO accept
         throw new Error('Time is never return.');
       }
       // (2020.11.03 sakamoto) 小数点表示の許容
       while(i-- > 0) {
         var test = parseInt(diff / maxv[i]), key = keys[i];
-        if(test == 0 || i === 0)
-          return U.enable[key] === false ? lastd: createDisp(key);
-        U.enable[key] !== false && (lastd = createDisp(key)), diff = test;
+        if(test == 0 || i === 0) {
+          return U.enable[key] === FALSE ? lastd: createDisp(key);
+        }
+        U.enable[key] !== FALSE && (lastd = createDisp(key));
+        diff_int = test, diff = diff / maxv[i];
       }
       function createDisp(key) {
         var dec = U.decimal[key] || 0, pow = Math.pow(10, dec);
-        return U.viewer(pow == 1 ? diff: ( parseInt(diff * pow / maxv[i]) / pow ), String(U.display[key] || key), dec);
+        return U.viewer(pow == 1 ? diff_int: ( parseInt(diff * pow) / pow ), String(U.display[key] || key), dec);
       }
     }
 
